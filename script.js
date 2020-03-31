@@ -1,18 +1,18 @@
 var currentImgCounter = 0;
-var galleryBody;
 var galleryBodyWidth ;
 var wrap;
 
 function gallery() {
-    var imgs = document.querySelectorAll(".wrap img");galleryBody = document.getElementsByClassName("gallery-body")[0];
-    galleryBodyWidth = galleryBody.clientWidth;
+    var imgs = document.querySelectorAll(".wrap img");
+    var galleryBody = document.getElementsByClassName("gallery-body")[0];
+    var galleryBodyWidth = galleryBody.clientWidth;
     wrap = document.getElementsByClassName("wrap")[0];
     imgs.forEach(function(img){
         var imgWidth = img.clientWidth;
-        var margin = (galleryBodyWidth - imgWidth) /2
+        var margin = (galleryBodyWidth - imgWidth) /2;
         img.style.marginLeft=margin+"px";
         img.style.marginRight=margin+"px";
-    })
+    });
 
     var rButton = document.getElementById("r-button");
     var lButton = document.getElementById("l-button");
@@ -28,7 +28,7 @@ function gallery() {
     }
 
     lButton.onclick=function(){
-        wrap.style.transition="transform 1000ms linear 0s "
+        wrap.style.transition="transform 1000ms linear 0s ";
         var transformValue = wrap.style.transform;
         var translateValue = transformValue ? parseTranslateValue(transformValue) : 0;
         if (translateValue>0){
@@ -45,7 +45,7 @@ function gallery() {
 
 
     rButton.onclick=function(){
-        wrap.style.transition="transform 1000ms linear 0s "
+        wrap.style.transition="transform 1000ms linear 0s ";
         var transformValue = wrap.style.transform;
         var translateValue = transformValue ? parseTranslateValue(transformValue) : 0;
         if (translateValue< parseInt(wrap.style.width) - galleryBodyWidth){
@@ -55,7 +55,7 @@ function gallery() {
         }
         else {
             translateValue = 0;
-            wrap.style.transform = "translateX(-"+translateValue+"px)"
+            wrap.style.transform = "translateX(-"+translateValue+"px)";
             currentImgCounter = 0;
         }
     };
@@ -63,14 +63,15 @@ function gallery() {
 }
 
 function resize() {
-    wrap.style.transition="transform 0ms linear 0s "
+    wrap.style.transition="transform 0ms linear 0s ";
     gallery();
     wrap.style.transform = "translateX(-"+ (currentImgCounter * galleryBodyWidth )+"px)";
 }
 
+window.onload= gallery;
 window.onresize = resize;
 
-window.onload= gallery;
+
 
 
 
