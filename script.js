@@ -1,7 +1,6 @@
 function getGallery(selector) {
 
     var currentImgCounter = 0;
-    var galleryBodyWidth;
     var wrap;
 
     function gallery() {
@@ -61,13 +60,16 @@ function getGallery(selector) {
                 currentImgCounter = 0;
             }
         };
-        return {'currentImgCounter' : currentImgCounter, 'galleryBodyWidth' : galleryBodyWidth}
+		
+        return galleryBodyWidth;
     }
 
     function resize() {
         wrap.style.transition = "transform 0ms linear 0s ";
-        let gal = gallery();
-        wrap.style.transform = "translateX(-" + (gal.currentImgCounter * gal.galleryBodyWidth) + "px)";
+        //var galleryBody = document.querySelector("#"+selector +" .gallery-body");
+        //var galleryBodyWidth = galleryBody.clientWidth;
+		let galleryBodyWidth = gallery();
+        wrap.style.transform = "translateX(-" + (currentImgCounter * galleryBodyWidth) + "px)";
     }
 
     window.addEventListener("load", gallery);
@@ -77,4 +79,4 @@ function getGallery(selector) {
 
 getGallery("gallery");
 
-/*getGallery("gallery2");*/
+//getGallery("gallery2");
